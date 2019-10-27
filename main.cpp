@@ -3,6 +3,9 @@
 //
 #include "Player.h"
 #include "Property.h"
+#include "House.h"
+#include "Apt.h"
+#include "Business.h"
 
 
 
@@ -13,7 +16,7 @@ Property** start_props(){
     for(int i = 0; i < 3; i++){
         start_props[i + 0][i] = new House();
         start_props[i + 1][i] = new Apt();
-        start_props[i + 2][i] = new Buisiness();
+        start_props[i + 2][i] = new Business();
     }
 
     return start_props;
