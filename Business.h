@@ -8,6 +8,12 @@
 #include "Property.h"
 
 class Business: public Property {
+    int* sizes;
+
+public:
+    Business();
+
+
 
 };
 

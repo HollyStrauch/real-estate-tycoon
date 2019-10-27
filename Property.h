@@ -11,12 +11,13 @@ using namespace std;
 
 
 class Property{
+protected:
     double value;
     double mortgage;
     double dur_mortgage;
     double propery_tax;
     int num_tenants;
-    Tenant* tenants;
+    Tenant** tenants;
     string location;
     string type;
 

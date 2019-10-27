@@ -8,7 +8,8 @@
 #include "Property.h"
 
 class Apt:public Property {
-
+public:
+    Apt();
 };
 
 

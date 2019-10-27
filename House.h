@@ -8,7 +8,8 @@
 #include "Property.h"
 
 class House:public Property{
-
+public:
+    House();
 };
 
 
