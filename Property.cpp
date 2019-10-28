@@ -110,8 +110,25 @@ int Property::get_num_tenants() const{
     return this->num_tenants;
 }
 
-double Property::get_mort() const {
+int Property::get_mort() const {
     return this->mortgage;
 }
 
+std::string Property::toString() const {
+
+    cout << std::setprecision(2) << std::fixed;
+    string prop;
+
+    prop.append(this->get_type());
+    prop.append("\t $");
+    prop.append(to_string(this->get_value()));
+    prop.append("\t ");
+    prop.append(get_loc());
+    prop.append("\t ");
+    prop.append(to_string(this->get_num_tenants()));
+    prop.append("\t $");
+    prop.append(to_string(this->get_mort()));
+
+    return prop;
+}
 
