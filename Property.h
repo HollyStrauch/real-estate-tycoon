@@ -2,7 +2,7 @@
 // Created by Holly Strauch on 10/25/2019.
 //
 
-#ifndef REAL_ESTATE_TYCOON_PROPERY_H
+#ifndef REAL_ESTATE_TYCOON_PROPERTY_H
 #define REAL_ESTATE_TYCOON_PROPERTY_H
 
 #include <string>
@@ -38,12 +38,10 @@ public:
     void crash();
     void gent(string loc);
     void random_event(int event);
-    string get_type() const;
-    double get_mort() const;
 
 
 
 };
 
 
-#endif //REAL_ESTATE_TYCOON_PROPERY_H
+#endif //REAL_ESTATE_TYCOON_PROPERTY_H
