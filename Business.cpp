@@ -7,7 +7,7 @@
 
 
 Business::Business(){
-    this->value = (rand() % 2 + 4) * 100000;
+    this->value = (rand() % 3 + 4) * 100000;
     this->mortgage = (rand() % 50 + 1) * 100;
     this->propery_tax = this->value * .015;
     this->dur_mortgage = this->value / this->mortgage;

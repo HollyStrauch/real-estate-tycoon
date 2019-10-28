@@ -2,6 +2,8 @@
 // Created by Holly Strauch on 10/25/2019.
 //
 
+#include <iomanip>
+#include <iostream>
 #include "Property.h"
 
 void Property::random_event(int event) {
@@ -97,7 +99,7 @@ string Property::get_type() const{
     return type;
 }
 
-double Property::get_value() const{
+int Property::get_value() const{
     return this->value;
 }
 string Property::get_loc() const{

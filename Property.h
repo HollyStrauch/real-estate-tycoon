@@ -12,10 +12,10 @@ using namespace std;
 
 class Property{
 protected:
-    double value;
-    double mortgage;
-    double dur_mortgage;
-    double propery_tax;
+    int value;
+    int mortgage;
+    int dur_mortgage;
+    int propery_tax;
     int num_tenants;
     Tenant** tenants;
     string location;
@@ -25,11 +25,12 @@ protected:
 
 public:
    // Property();
-    double get_value() const;
+    int get_value() const;
     string get_loc() const;
     int get_num_tenants() const;
     string get_type() const;
-    double get_mort() const;
+    int get_mort() const;
+    std::string toString() const;
   //  Tenant* get_tenants();
  //   Property gen_random(int event);
   //  ~Property();

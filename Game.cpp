@@ -2,6 +2,7 @@
 // Created by Holly Strauch on 10/28/2019.
 //
 
+#include <iostream>
 #include "Game.h"
 #include "Player.h"
 
