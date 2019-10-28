@@ -72,6 +72,27 @@ void Property::gent(string loc){
 
 }
 
+void Property::set_loc(){
+    int loc = rand() % 5;
+
+    switch(loc) {
+        case 0:
+            this->location = "NW";
+            break;
+        case 1:
+            this->location = "SE";
+            break;
+        case 2:
+            this->location = "NE";
+            break;
+        case 3:
+            this->location = "MW";
+            break;
+        case 4:
+            this->location = "SW";
+    }
+}
+
 string Property::get_type() const{
     return type;
 }

@@ -13,7 +13,7 @@ Apt::Apt(){
     this->type = "APT";
     this->num_tenants = (rand() % 10 + 1);
     this->tenants = new Tenant*[num_tenants];
-    this->location = "temp";
+    this->set_loc();
 
 }
 

@@ -13,6 +13,6 @@ House::House(){
     this->type = "HOUSE";
     this->num_tenants = 1;
     this->tenants = new Tenant*;
-    this->location = "temp";
+    this->set_loc();
 
 }

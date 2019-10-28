@@ -16,7 +16,7 @@ Business::Business(){
     this->num_tenants = (rand() % 5 + 1);
     this->tenants = new Tenant*;
     this->sizes = nullptr;
-    this->location = "temp";
+    this->set_loc();
 
 
 }

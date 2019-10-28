@@ -21,7 +21,7 @@ protected:
     string location;
     string type;
 
-    //ftn to generate location
+    void set_loc();
 
 public:
    // Property();
