@@ -113,7 +113,7 @@ int Player::user_input_prop(int total){
 
 }
 
-int Player::sale_price(double prop_value) {
+void Player::sale_price(double prop_value) {
 
     cout << "Enter the amount you'd like to sell the property for";
     double price = user_input_price();

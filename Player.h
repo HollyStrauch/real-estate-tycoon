@@ -29,7 +29,7 @@ public:
     void del_at_index(int index);
     Property* get_prop(int index);
     int user_input_prop(int total);
-    int sale_price(double prop_value);
+    void sale_price(double prop_value);
     bool check_avail(int index);
     double user_input_price();
 };
