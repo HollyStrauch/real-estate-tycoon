@@ -21,16 +21,18 @@ protected:
     string location;
     string type;
 
+    //ftn to generate location
+
 public:
-    Property();
+   // Property();
     double get_value() const;
     string get_loc() const;
     int get_num_tenants() const;
-    Tenant* get_tenants();
-    double calc_mortgage();
-    Property gen_random(int event);
-    ~Property();
-    void weather(int event);
+    string get_type() const;
+    double get_mort() const;
+  //  Tenant* get_tenants();
+ //   Property gen_random(int event);
+  //  ~Property();
     void hurricane();
     void tornado();
     void earthquake();

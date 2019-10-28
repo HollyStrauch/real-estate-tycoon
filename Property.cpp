@@ -76,3 +76,19 @@ string Property::get_type() const{
     return type;
 }
 
+double Property::get_value() const{
+    return this->value;
+}
+string Property::get_loc() const{
+    return this->location;
+}
+
+int Property::get_num_tenants() const{
+    return this->num_tenants;
+}
+
+double Property::get_mort() const {
+    return this->mortgage;
+}
+
+
