@@ -15,4 +15,22 @@ Game::Game(){
 void Game::start_game() {
     Player* player1 = new Player("Holly");
 
+    print_avail_p();
+
+}
+
+void Game::print_avail_p() {
+
+    cout << "Location\t Value\t\t Loc\tTenants\t Mortgage" << endl;
+    for(int i = 0; i < 3; i++){
+        cout << i + 1 << ". " << this->avail_b[i].toString() << endl;
+    }
+
+    for(int i = 0; i < 3; i++){
+        cout << i + 4 << ". " << this->avail_a[i].toString() << endl;
+    }
+
+    for(int i = 0; i < 3; i++){
+        cout << i + 7 << ". " << this->avail_h[i].toString() << endl;
+    }
 }

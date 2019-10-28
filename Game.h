@@ -16,6 +16,7 @@ class Game {
 public:
     Game();
     void start_game();
+    void print_avail_p();
 
 };
 
