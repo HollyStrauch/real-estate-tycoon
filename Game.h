@@ -8,6 +8,7 @@
 #include "House.h"
 #include "Apt.h"
 #include "Business.h"
+#include "Player.h"
 
 class Game {
     House* avail_h;
@@ -17,7 +18,10 @@ public:
     Game();
     void start_game();
     void print_avail_p();
-
+    void buy_sell_raise(Player &player1);
+    bool get_input(string action);
+    void buy_property(Player &player1);
+    void update_listing(Player &player1, int p, int pArr);
 };
 
 
