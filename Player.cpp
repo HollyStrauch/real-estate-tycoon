@@ -11,7 +11,7 @@ using namespace std;
 
 Player::Player(string name){
     this->name = name;
-    this->bank_account = 5000000.0;
+    this->bank_account = 50000;
     this->num_prop = 0;
     this->head = nullptr;
     this->tail = nullptr;
@@ -53,14 +53,12 @@ void Player::sell_property() {
 
 void Player::print_prop() {
 
-    cout << "\t Type \t Value \t Location \t No. of Tenants " << endl;
+    cout <<  "Location\t Value\t\t Loc\tTenants\t Mortgage" << endl;
 
     Node *temp = this->head;
     for (int i = 0; i < this->num_prop; i++){
 
-        cout << i + 1 << ". " << temp->p->get_type() << " " << temp->p->get_value() << " "
-             << temp->p->get_loc() << " " << temp->p->get_num_tenants() << " " << temp->p->get_mort() << endl;
-            temp = temp->next;
+        cout << i + 1 << temp->p->toString() << endl;
     }
 
     delete temp;
@@ -121,17 +119,17 @@ void Player::sale_price(double prop_value) {
 
     switch(r){
         case 1: cout << "What a fantastic piece of property!! Your price as been accepted!" << endl;
-            this->bank_account += price;
+            this->bank_account += (int) price;
             break;
         case 2: cout << "The buyer will pay the property value" << endl;
-            this->bank_account += prop_value;
+            this->bank_account += (int) prop_value;
             break;
         case 3: cout << "No one likes your property. You'll get 10% less than property value" << endl;
-            this->bank_account += prop_value * .9;
+            this->bank_account += (int)(prop_value * .9);
     }
 }
 
-double Player::user_input_price(){
+int Player::user_input_price(){
 
     while (true){
         string input;
@@ -162,4 +160,65 @@ bool Player::check_avail(int index){
         cout << "Property contains tenants and is unavailable to sell" << endl;
         return false;
     }
+}
+
+int Player::get_bank_account() {
+    return this->bank_account;
+}
+
+//may change to collect separately between business and citizen
+void Player::collect_rent() {
+
+    Node* temp = this->head;
+    for(int i = 0; i < this->num_prop; i++){
+        int counter = 0;
+        for(int j = 0; j < temp->p->get_num_tenants(); j++){
+            while(!temp->p->get_tenant(counter).get_exists()){
+                counter++;
+            }
+            if (temp->p->get_tenant(counter).get_budget() > temp->p->get_rent()){
+                this->bank_account += temp->p->get_rent();
+
+                if (! temp->p->get_tenant(counter).get_type()){
+                    temp->p->inc_prop_val();
+                }
+            }else if (temp->p->get_tenant(counter).get_agree() > 1){
+                temp->p->get_tenant(counter).set_not_exist();
+            }
+
+        }
+        temp = temp->next;
+    }
+}
+
+void Player::pay_mort() {
+    Node* temp = this->head;
+
+    for(int i = 0; i < this->num_prop; i++){
+
+        if(temp->p->get_duration() <= 0) {
+            temp = temp->next;
+            continue;
+        }
+
+        this->bank_account -= temp->p->get_mort();
+        temp->p->dec_duration();
+
+        cout << "--$ You payed $" << temp->p->get_mort() << " on property " << i+ 1 << ". Only " <<
+            temp->p->get_duration() << " payments left! --$" << endl;
+
+        temp = temp->next;
+    }
+}
+
+void Player::pay_prop_tax() {
+    Node* temp = this->head;
+
+    for(int i = 0; i < this->num_prop; i++){
+        this->bank_account -= temp->p->get_tax();
+
+        cout << "--$ You payed $" << temp->p->get_tax() << " on property " << i + 1 << " --$" << endl;
+    }
+
+    cout << "Was it worth it?" << endl;
 }

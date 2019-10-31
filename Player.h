@@ -8,7 +8,7 @@
 #include "Property.h"
 
 class Player{
-    double bank_account;
+    int bank_account;
     int num_prop;
     //Property* props;
     string name;
@@ -31,7 +31,11 @@ public:
     int user_input_prop(int total);
     void sale_price(double prop_value);
     bool check_avail(int index);
-    double user_input_price();
+    int user_input_price();
+    int get_bank_account();
+    void collect_rent();
+    void pay_mort();
+    void pay_prop_tax();
 };
 
 #endif //REAL_ESTATE_TYCOON_PLAYER_H
