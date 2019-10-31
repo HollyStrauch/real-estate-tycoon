@@ -12,10 +12,6 @@ class Business: public Property {
 
 public:
     Business();
-    void tenant_leaves(int index);
-
-
-
 };
 
 
