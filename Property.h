@@ -17,7 +17,8 @@ protected:
     int dur_mortgage;
     int propery_tax;
     int num_tenants;
-    Tenant** tenants;
+    int rent;
+    Tenant* tenants;
     string location;
     string type;
 
