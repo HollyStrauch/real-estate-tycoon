@@ -114,6 +114,32 @@ int Property::get_mort() const {
     return this->mortgage;
 }
 
+Tenant Property::get_tenant(int index) const {
+    return this->tenants[index];
+}
+
+int Property::get_rent() const {
+    return this->rent;
+}
+
+int Property::get_duration() const {
+    return this->dur_mortgage;
+}
+
+int Property::get_tax() const {
+    return this->propery_tax;
+}
+
+void Property::inc_prop_val(){
+    this->value += (int)(this->value *.01);
+    this->propery_tax = this->value * .015;
+}
+
+void Property::dec_duration(){
+    this->dur_mortgage--;
+}
+
+
 std::string Property::toString() const {
 
     cout << std::setprecision(2) << std::fixed;

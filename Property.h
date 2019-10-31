@@ -32,9 +32,15 @@ public:
     string get_type() const;
     int get_mort() const;
     std::string toString() const;
+    Tenant get_tenant(int index) const;
+    int get_rent() const;
+    int get_duration() const;
+    int get_tax() const;
   //  Tenant* get_tenants();
  //   Property gen_random(int event);
   //  ~Property();
+    void inc_prop_val();
+    void dec_duration();
     void hurricane();
     void tornado();
     void earthquake();
