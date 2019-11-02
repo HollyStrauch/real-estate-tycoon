@@ -25,7 +25,7 @@ public:
     ~Player();
     void sell_property();
     void print_prop();
-    Property buy_prop(Property* prop);
+    void buy_prop(Property* prop);
     void del_at_index(int index);
     Property* get_prop(int index);
     int user_input_prop(int total);

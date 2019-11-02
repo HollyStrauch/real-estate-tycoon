@@ -222,3 +222,14 @@ void Player::pay_prop_tax() {
 
     cout << "Was it worth it?" << endl;
 }
+
+void Player::buy_prop(Property *prop) {
+    Node * newProp = new Node;
+    newProp->p = prop;
+    newProp->next = nullptr;
+
+    this->tail->next = newProp;
+    this->tail = newProp;
+
+    num_prop++;
+}
