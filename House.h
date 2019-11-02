@@ -10,6 +10,7 @@
 class House:public Property{
 public:
     House();
+    House &operator= (House &right);
 };
 
 

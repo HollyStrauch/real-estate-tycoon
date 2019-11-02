@@ -46,3 +46,16 @@ bool Tenant::get_exists() const {
 void Tenant::set_not_exist() {
     this->exists = false;
 }
+
+Tenant & Tenant::operator= (Tenant &right){
+
+    if (&right == this)
+        return (*this);
+
+    this->type = right.get_type();
+    this->exists = right.get_exists();
+    this->agree = right.get_agree();
+    this->budget = right.get_budget();
+
+    return (*this);
+}

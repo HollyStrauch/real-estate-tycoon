@@ -17,3 +17,23 @@ House::House(){
     this->set_loc();
 
 }
+
+House & House::operator= (House &right){
+
+    if (&right == this)
+        return (*this);
+
+    this->value = right.value;
+    this->mortgage = right.mortgage;
+    this->propery_tax = right.propery_tax;
+    this->dur_mortgage = right.dur_mortgage;
+    this->rent = right.rent;
+
+    this->type = right.type;
+    this->num_tenants = right.num_tenants;
+    this->location = right.location;
+
+    this->tenants = right.tenants;
+
+    return (*this);
+}

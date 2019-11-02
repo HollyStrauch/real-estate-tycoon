@@ -17,14 +17,35 @@ Business::Business(){
     this->num_tenants = (rand() % 5 + 1);
 
     this->tenants = new Tenant[num_tenants];
+    this->sizes = new int[num_tenants];
     for (int i = 0; i < num_tenants; i++){
-        this->tenants[i] = new Tenant(false);
+        this->tenants[i].set_business();
+        this->sizes[i] = rand() % 3;
     }
 
-    this->sizes = nullptr;
     this->set_loc();
 }
 
+Business & Business::operator= (Business &right){
+    if (&right == this)
+        return (*this);
 
-//must set up sizes
+    this->value = right.value;
+    this->mortgage = right.mortgage;
+    this->propery_tax = right.propery_tax;
+    this->dur_mortgage = right.dur_mortgage;
+    this->rent = right.rent;
+
+    this->type = right.type;
+    this->num_tenants = right.num_tenants;
+    this->location = right.location;
+
+    this->tenants = new Tenant[num_tenants];
+    this->sizes = new int[num_tenants];
+    for (int i = 0; i < num_tenants; i++){
+        this->tenants[i] = right.tenants[i];
+        this->sizes[i] = right.sizes[i];
+    }
+    return (*this);
+}
 

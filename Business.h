@@ -12,6 +12,7 @@ class Business: public Property {
 
 public:
     Business();
+    Business &operator= (Business &right);
 };
 
 

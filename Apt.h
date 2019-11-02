@@ -10,7 +10,7 @@
 class Apt:public Property {
 public:
     Apt();
-   // Apt &operator= (Apt &right);
+    Apt &operator= (Apt &right);
 };
 
 
