@@ -36,6 +36,7 @@ public:
     virtual int get_rent() const;
     virtual int get_duration() const;
     virtual int get_tax() const;
+    virtual void set_rent(int price);
   //  Tenant* get_tenants();
  //   Property gen_random(int event);
   //  ~Property();

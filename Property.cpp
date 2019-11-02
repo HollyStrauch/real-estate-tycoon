@@ -141,6 +141,10 @@ void Property::dec_duration(){
     this->dur_mortgage--;
 }
 
+void Property::set_rent(int price){
+    this->rent = price;
+}
+
 
 std::string Property::toString() const {
 
