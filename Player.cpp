@@ -251,3 +251,16 @@ void Player::buy_prop(Property *prop) {
 
     num_prop++;
 }
+
+void Player::random_event() {
+
+    cout << "?? RANDOM EVENT!! What fate shall befall your properties? ??" << endl;
+
+    Node* temp = this->head;
+    int event = rand() % 6 + 1;
+
+    for(int i = 0; i < this->num_prop; i++){
+        temp->p->random_event(event);
+    }
+
+}

@@ -31,7 +31,9 @@ void Property::hurricane() {
         return;
     }
 
-    this->value *= .5;
+    this->value /= 2;
+    cout << "--$ HURRICANE IN THE SE! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
+
 }
 
 void Property::tornado() {
@@ -41,6 +43,7 @@ void Property::tornado() {
     }
 
     this->value *= .7;
+    cout << "--$ TORNADO IN THE MW! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
 }
 
 void Property::earthquake() {
@@ -50,6 +53,7 @@ void Property::earthquake() {
     }
 
     this->value *= .9;
+    cout << "--$ EARTHQUAKE IN THE NW! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
 }
 
 void Property::wildfire(){
@@ -58,19 +62,17 @@ void Property::wildfire(){
     }
 
     this->value *= .75;
-
+    cout << "--$ WILDFIRE IN THE SW! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
 }
 
 void Property::crash(){
+    cout << "--$ STOCK MARKET CRASH! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
     this->value *= .7;
 }
 
 void Property::gent(string loc){
-    if(!this->location.compare(loc)){
-        return;
-    }
-
     this->value += this->value * .2 ;
+    cout << "++$ GENTRIFICATION! yay...? " << this->get_type() << " property value rose to $" << this->value << " $++" << endl;
 
 }
 
