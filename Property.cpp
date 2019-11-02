@@ -159,7 +159,11 @@ std::string Property::toString() const {
     prop.append("\t ");
     prop.append(to_string(this->get_num_tenants()));
     prop.append("\t $");
+    prop.append(to_string(this->get_rent()));
+    prop.append("\t $");
     prop.append(to_string(this->get_mort()));
+    prop.append("\t\t ");
+    prop.append(to_string(this->get_duration()));
 
     return prop;
 }
