@@ -70,6 +70,19 @@ void Game::buy_property(Player &player1) {
 
 void Game::update_listing(Player &player1, int p, int pArr){
 
+    Property *newProp;
+
+    if(pArr == 1){
+        player1.buy_prop(&this->avail_b[p]);
+        newProp = new Business;
+        this->avail_b[p] = newProp;
+    }else if (pArr == 2){
+        player1.buy_prop(&this->avail_a[p]);
+        this->avail_a[p] = new Apt;
+    }else{
+        player1.buy_prop(&this->avail_h[p]);
+        this->avail_h[p] = new House;
+    }
 }
 
 void Game::print_avail_p() {

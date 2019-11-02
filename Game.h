@@ -11,9 +11,9 @@
 #include "Player.h"
 
 class Game {
-    House* avail_h;
-    Apt* avail_a;
-    Business* avail_b;
+    Property* avail_h;
+    Property* avail_a;
+    Property* avail_b;
 public:
     Game();
     void start_game();
