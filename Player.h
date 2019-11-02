@@ -36,6 +36,8 @@ public:
     void collect_rent();
     void pay_mort();
     void pay_prop_tax();
+    void adjust_rent();
+    void random_event();
 };
 
 #endif //REAL_ESTATE_TYCOON_PLAYER_H

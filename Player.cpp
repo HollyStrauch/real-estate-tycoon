@@ -35,9 +35,26 @@ Player::~Player(){
     tail = nullptr;
 }
 
+void Player::adjust_rent(){
+
+    cout << "+-$ ADJUST RENT $-+ \n Listing all owned properties. " << endl;
+    this->print_prop();
+    int index = 0;
+
+    index = user_input_prop(this->num_prop);
+
+    cout << "Enter the new rent amount" << endl;
+    int price = user_input_price();
+
+    Property* prop = get_prop(index - 1);
+    prop->set_rent(price);
+
+    cout << "Way to do your landlording duties!";
+}
+
 void Player::sell_property() {
 
-    cout << "SELL PROPERTIES: \n Listing all properties.  Properties must contain no tenants in order to sell." << endl;
+    cout << "$$ SELL PROPERTIES $$ \n Listing all owned properties.  Properties must contain no tenants in order to sell." << endl;
     this->print_prop();
     int index = 0;
 
@@ -53,7 +70,7 @@ void Player::sell_property() {
 
 void Player::print_prop() {
 
-    cout <<  "Location\t Value\t\t Loc\tTenants\t Mortgage" << endl;
+    cout <<  "Location\t Value\t\t Loc\tTenants\tRent\t Mortgage\tPayments" << endl;
 
     Node *temp = this->head;
     for (int i = 0; i < this->num_prop; i++){
@@ -136,7 +153,7 @@ int Player::user_input_price(){
         getline(cin, input);
 
         try{
-            double num = stod(input);
+            int num = stod(input);
             if( num > 0 ){
                 return num;
             }
@@ -218,6 +235,7 @@ void Player::pay_prop_tax() {
         this->bank_account -= temp->p->get_tax();
 
         cout << "--$ You payed $" << temp->p->get_tax() << " on property " << i + 1 << " --$" << endl;
+        temp = temp->next;
     }
 
     cout << "Was it worth it?" << endl;
