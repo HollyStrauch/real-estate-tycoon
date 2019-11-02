@@ -26,28 +26,28 @@ protected:
 
 public:
    // Property();
-    int get_value() const;
-    string get_loc() const;
-    int get_num_tenants() const;
-    string get_type() const;
-    int get_mort() const;
-    std::string toString() const;
-    Tenant get_tenant(int index) const;
-    int get_rent() const;
-    int get_duration() const;
-    int get_tax() const;
+    virtual int get_value() const;
+    virtual string get_loc() const;
+    virtual int get_num_tenants() const;
+    virtual string get_type() const;
+    virtual int get_mort() const;
+    virtual string toString() const;
+    virtual Tenant get_tenant(int index) const;
+    virtual int get_rent() const;
+    virtual int get_duration() const;
+    virtual int get_tax() const;
   //  Tenant* get_tenants();
  //   Property gen_random(int event);
   //  ~Property();
-    void inc_prop_val();
-    void dec_duration();
-    void hurricane();
-    void tornado();
-    void earthquake();
-    void wildfire();
-    void crash();
-    void gent(string loc);
-    void random_event(int event);
+    virtual void inc_prop_val();
+    virtual void dec_duration();
+    virtual void hurricane();
+    virtual void tornado();
+    virtual void earthquake();
+    virtual void wildfire();
+    virtual void crash();
+    virtual void gent(string loc);
+    virtual void random_event(int event);
 
 
 
