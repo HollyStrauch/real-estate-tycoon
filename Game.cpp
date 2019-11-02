@@ -27,23 +27,22 @@ void Game::start_game() {
 
         //random event
         buy_sell_raise(*player1);
-        print_avail_p();
     }
 
 }
 
 void Game::buy_sell_raise(Player &player1) {
 
-    if (get_input("buy property")){
+    while (get_input("buy property")){
         buy_property(player1);
     }
 
-    if (get_input("sell property")){
-
+    while (get_input("sell property")){
+        player1.sell_property();
     }
 
-    if (get_input("adjust rent")){
-
+    while (get_input("adjust rent")){
+        player1.adjust_rent();
     }
 }
 
