@@ -25,8 +25,10 @@ void Game::start_game() {
         }
         cout << "$$ You currently have $" << player1->get_bank_account() << " in your account. $$" << endl;
 
-        //random event
+        player1->random_event();
         buy_sell_raise(*player1);
+
+        turn++;
     }
 
 }
@@ -73,21 +75,21 @@ void Game::update_listing(Player &player1, int p, int pArr){
     Property *newProp;
 
     if(pArr == 1){
-        player1.buy_prop(&this->avail_b[p]);
-        newProp = new Business;
-        this->avail_b[p] = newProp;
-    }else if (pArr == 2){
-        player1.buy_prop(&this->avail_a[p]);
-        this->avail_a[p] = new Apt;
-    }else{
-        player1.buy_prop(&this->avail_h[p]);
-        this->avail_h[p] = new House;
+//        player1.buy_prop(&this->avail_b[p]);
+//        newProp = new Business;
+//        this->avail_b[p] = newProp;
+//    }else if (pArr == 2){
+//        player1.buy_prop(&this->avail_a[p]);
+//        this->avail_a[p] = new Apt;
+//    }else{
+//        player1.buy_prop(&this->avail_h[p]);
+//        this->avail_h[p] = new House;
     }
 }
 
 void Game::print_avail_p() {
 
-    cout << "Location\t Value\t\t Loc\tTenants\t Mortgage" << endl;
+    cout << "Location\t Value\t\t Loc\tTenants\tRent\t Mortgage\tPayments" << endl;
     for(int i = 0; i < 3; i++){
         cout << i + 1 << ". " << this->avail_b[i].toString() << endl;
     }
