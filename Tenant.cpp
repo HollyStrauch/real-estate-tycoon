@@ -21,10 +21,15 @@ Tenant::Tenant(bool type){
 }
 
 Tenant::Tenant(){
+    this->type = true;
+    this->exists = true;
+    this->agree = rand() % 5 + 1;
+    this->budget = (rand() % 45 + 5) * 100;
+}
+
+void Tenant::set_business() {
     this->type = false;
-    this->exists = false;
-    this->agree = 0;
-    this->budget = 0;
+    this->budget = (rand() % 8 + 2) * 1000;
 }
 
 int Tenant::get_agree() const {

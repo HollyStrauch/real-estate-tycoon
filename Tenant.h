@@ -6,6 +6,7 @@
 #define REAL_ESTATE_TYCOON_TENANT_H
 
 class Tenant{
+private:
     bool type;
     bool exists;
     int budget;
