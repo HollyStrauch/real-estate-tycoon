@@ -22,8 +22,8 @@ Business::Business(){
     for (int i = 0; i < num_tenants; i++){
         this->tenants[i].set_business();
         this->sizes[i] = rand() % 3;
+        this->rentSpace[i] = 0;
     }
-
     this->set_loc();
 }
 
