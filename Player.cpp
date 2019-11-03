@@ -11,7 +11,7 @@ using namespace std;
 
 Player::Player(string name){
     this->name = name;
-    this->bank_account = 50000;
+    this->bank_account = 500000;
     this->num_prop = 0;
     this->head = nullptr;
     this->tail = nullptr;
