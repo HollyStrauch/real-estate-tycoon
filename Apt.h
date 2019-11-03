@@ -11,6 +11,7 @@ class Apt:public Property {
 public:
     Apt();
     Apt &operator= (Apt &right);
+    virtual int get_rent() const;
 };
 
 

@@ -9,10 +9,13 @@
 
 class Business: public Property {
     int* sizes;
+    int* rentSpace;
 
 public:
     Business();
     Business &operator= (Business &right);
+    virtual int get_rent() const;
+    virtual void set_rent();
 };
 
 

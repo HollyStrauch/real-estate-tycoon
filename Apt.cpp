@@ -3,6 +3,7 @@
 //
 
 #include "Apt.h"
+#include <iostream>
 
 Apt::Apt(){
     this->value = (rand() % 4 + 3) * 100000;
@@ -39,4 +40,27 @@ Apt & Apt::operator= (Apt &right){
         this->tenants[i] = right.tenants[i];
     }
     return (*this);
+}
+
+
+int Apt::get_rent() const {
+    int total = 0;
+    int counter = 0;
+
+    for(int i = 0; i < this->num_tenants; i++) {
+        while(!this->get_tenant(counter).get_exists()){
+            counter++;
+        }
+
+        if (this->get_tenant(counter).get_budget() > this->rent) {
+            total += this->rent;
+
+        } else if (this->get_tenant(counter).get_agree() > 1) {
+            this->get_tenant(counter).leave();
+            cout << "~~ Tenant has moved out ~~" << endl;
+        } else {
+            cout << "XX Someone is refusing to pay rent XX" << endl;
+        }
+    }
+    return total;
 }

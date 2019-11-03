@@ -3,6 +3,7 @@
 //
 
 #include "House.h"
+#include <iostream>
 
 House::House(){
     this->value = (rand() % 6 + 1) * 100000;
@@ -36,4 +37,19 @@ House & House::operator= (House &right){
     this->tenants = right.tenants;
 
     return (*this);
+}
+
+int House::get_rent() const {
+
+    if (this->get_tenant(0).get_budget() > this->rent) {
+        return this->rent;
+
+    }else if (this->get_tenant(0).get_agree() > 1){
+        this->get_tenant(0).leave();
+        cout << "~~ Tenant has moved out ~~" << endl;
+    } else {
+        cout << "XX Someone is refusing to pay rent XX" << endl;
+    }
+
+    return 0;
 }

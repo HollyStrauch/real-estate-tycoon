@@ -43,13 +43,10 @@ void Player::adjust_rent(){
 
     index = user_input_prop(this->num_prop);
 
-    cout << "Enter the new rent amount" << endl;
-    int price = user_input_price();
-
     Property* prop = get_prop(index - 1);
-    prop->set_rent(price);
+    prop->set_rent();
 
-    cout << "Way to do your landlording duties!";
+    cout << "Way to do your landlording duties you fat cat!" << endl;
 }
 
 void Player::sell_property() {

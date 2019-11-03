@@ -11,6 +11,7 @@ class House:public Property{
 public:
     House();
     House &operator= (House &right);
+    virtual int get_rent() const;
 };
 
 
