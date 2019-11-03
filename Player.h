@@ -20,6 +20,8 @@ class Player{
     Node *head;
     Node *tail;
 
+    void del_node(int index);
+
 public:
     Player(string name);
     ~Player();

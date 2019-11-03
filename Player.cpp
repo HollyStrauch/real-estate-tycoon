@@ -59,12 +59,15 @@ void Player::sell_property() {
 
     do {
         index = user_input_prop(this->num_prop);
-    }while(!check_avail(index - 1) && index != 0);
+    }while(index != 0 && !check_avail(index - 1));
 
-    Property* sell = get_prop(index - 1);
-    sale_price(sell->get_value());
-
-    del_at_index(index - 1);
+    if(index != 0) {
+        Property *sell = get_prop(index - 1);
+        sale_price(sell->get_value());
+        del_at_index(index - 1);
+    }else{
+        cout << "Exiting..." << endl;
+    }
 }
 
 void Player::print_prop() {
@@ -83,22 +86,48 @@ void Player::print_prop() {
 void Player::del_at_index(int index){
 
     Node* temp = this->head;
+    if(this->num_prop == 1){
+        delete temp->p;
+        temp->next = nullptr;
+        this->head = nullptr;
+        this->tail = nullptr;
+        delete temp;
+    }else if (index == 0){
+        this->head = this->head->next;
+        delete temp->p;
+        temp->next = nullptr;
+        delete temp;
+    }else{
+        del_node(index);
+    }
+    this->num_prop--;
+}
+
+void Player::del_node(int index) {
+    Node* temp = this->head;
     for(int i = 0; i < index - 1; i++){
         temp = temp->next;
     }
 
-    Node* del = temp->next;
-    temp->next = temp->next->next;
-
-    this->num_prop--;
-
-    delete del;
-    delete temp;
+    if (index == this->num_prop - 1){
+        this->tail = temp;
+        delete temp->p;
+        temp->next->next = nullptr;
+        delete temp->next;
+        this->tail->next = nullptr;
+    }else{
+        Node* del = temp->next;
+        temp->next = temp->next->next;
+        delete del->p;
+        del->next = nullptr;
+        delete del;
+    }
 }
+
 
 Property* Player::get_prop(int index){
     Node* temp = this->head;
-    for(int i = 0; i < index - 1; i++){
+    for(int i = 0; i < index; i++){
         temp = temp->next;
     }
 
@@ -168,7 +197,7 @@ bool Player::check_avail(int index){
         temp = temp->next;
     }
 
-    if(temp->p->get_num_tenants() == 0){
+    if(temp->p->get_num_tenants() <= 0){
         cout << "Property is available to sell" << endl;
         return true;
     }else{
@@ -252,9 +281,10 @@ void Player::random_event() {
 
     Node* temp = this->head;
     int event = rand() % 6 + 1;
+    string loc = Property::generate_loc();
 
     for(int i = 0; i < this->num_prop; i++){
-        temp->p->random_event(event);
+        temp->p->random_event(event, loc);
     }
 
 }
