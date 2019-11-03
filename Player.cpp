@@ -74,10 +74,9 @@ void Player::print_prop() {
     Node *temp = this->head;
     for (int i = 0; i < this->num_prop; i++){
 
-        cout << i + 1 << temp->p->toString() << endl;
+        cout << i + 1 << ". " << temp->p->toString() << endl;
+        temp = temp->next;
     }
-
-    delete temp;
 
 }
 
