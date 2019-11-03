@@ -13,6 +13,7 @@ public:
     Apt &operator= (Apt &right);
     Apt(const Apt &orig);
     virtual int pay_rent() const;
+    virtual void set_rent();
 };
 
 

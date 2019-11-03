@@ -81,3 +81,10 @@ int Apt::pay_rent() const {
     }
     return total;
 }
+
+void Apt::set_rent() {
+    cout << "Current rent: " << this->rent << "\n Enter new rent amount: " << endl;
+    int price = user_input_price();
+
+    this->rent = price;
+}
