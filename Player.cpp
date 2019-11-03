@@ -186,7 +186,7 @@ void Player::collect_rent() {
 
     for(int i = 0; i < this->num_prop; i++){
         cout << "Collecting rent on property " << i << endl;
-        total += temp->p->get_rent();
+        total += temp->p->pay_rent();
         temp = temp->next;
     }
 

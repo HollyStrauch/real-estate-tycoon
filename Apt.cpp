@@ -43,7 +43,7 @@ Apt & Apt::operator= (Apt &right){
 }
 
 
-int Apt::get_rent() const {
+int Apt::pay_rent() const {
     int total = 0;
     int counter = 0;
 

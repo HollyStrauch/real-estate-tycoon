@@ -34,6 +34,7 @@ public:
     virtual string toString() const;
     virtual Tenant get_tenant(int index) const;
     virtual int get_rent() const;
+    virtual int pay_rent();
     virtual int get_duration() const;
     virtual int get_tax() const;
     virtual void set_rent();

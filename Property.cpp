@@ -138,7 +138,11 @@ Tenant Property::get_tenant(int index) const {
     return this->tenants[index];
 }
 
-int Property::get_rent() const {
+int Property::pay_rent(){
+    return this->rent;
+}
+
+int Property::get_rent() const{
     return this->rent;
 }
 

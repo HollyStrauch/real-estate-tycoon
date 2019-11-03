@@ -39,7 +39,7 @@ House & House::operator= (House &right){
     return (*this);
 }
 
-int House::get_rent() const {
+int House::pay_rent() const {
 
     if (this->get_tenant(0).get_budget() > this->rent) {
         return this->rent;

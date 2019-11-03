@@ -50,7 +50,7 @@ Business & Business::operator= (Business &right){
     return (*this);
 }
 
-int Business::get_rent() const {
+int Business::pay_rent(){
     int total = 0;
     int counter = 0;
 
@@ -61,7 +61,7 @@ int Business::get_rent() const {
 
         if (this->get_tenant(counter).get_budget() > this->rentSpace[counter]) {
             total += this->rentSpace[counter];
-
+            this->value += this->value / 10;
         } else if (this->get_tenant(counter).get_agree() > 1) {
             this->get_tenant(counter).leave();
             cout << "~~ Tenant has moved out ~~" << endl;
@@ -85,4 +85,8 @@ void Business::set_rent() {
         this->rentSpace[count] = price;
     }
 
+}
+
+int Business::get_rent() const {
+    return 0;
 }

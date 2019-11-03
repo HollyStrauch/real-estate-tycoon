@@ -14,8 +14,9 @@ class Business: public Property {
 public:
     Business();
     Business &operator= (Business &right);
-    virtual int get_rent() const;
+    virtual int pay_rent();
     virtual void set_rent();
+    virtual int get_rent() const;
 };
 
 
