@@ -54,36 +54,33 @@ void Game::buy_property(Player &player1) {
     int p3 = rand() % 3;
 
     cout << "Here are some of our FINEST LISTINGS! Better hurry before they're off the market!" << endl;
-    cout << "Location\t Value\t\t Loc\tTenants\t Mortgage" << endl;
+    cout << "Location\t Value\t\t Loc\tTenants\tRent\t Mortgage\tPayments"  << endl;
     cout << "1. " << this->avail_b[p1].toString() << endl;
     cout << "2. " << this->avail_a[p2].toString() << endl;
     cout << "3. " << this->avail_h[p3].toString() << endl;
-
-    if (get_input("purchase #1")){
+    cout << "\n Alright, lets see which ones you can afford..." << endl;
+    if (this->avail_b[p1].get_value() <= player1.get_bank_account() && get_input("purchase #1")){
         update_listing(player1, p1, 1);
     }
-    if (get_input("purchase #2")){
+    if (this->avail_a[p2].get_value() <= player1.get_bank_account() && get_input("purchase #2")){
         update_listing(player1, p2, 2);
     }
-    if (get_input("purchase #3")){
+    if (this->avail_h[p3].get_value() <= player1.get_bank_account() && get_input("purchase #3")){
         update_listing(player1, p3, 3);
     }
 }
 
 void Game::update_listing(Player &player1, int p, int pArr){
 
-    Property *newProp;
-
     if(pArr == 1){
-//        player1.buy_prop(&this->avail_b[p]);
-//        newProp = new Business;
-//        this->avail_b[p] = newProp;
-//    }else if (pArr == 2){
-//        player1.buy_prop(&this->avail_a[p]);
-//        this->avail_a[p] = new Apt;
-//    }else{
-//        player1.buy_prop(&this->avail_h[p]);
-//        this->avail_h[p] = new House;
+        player1.buy_prop(&this->avail_b[p]);
+        this->avail_b[p] = *(new Business());
+    }else if (pArr == 2){
+        player1.buy_prop(&this->avail_a[p]);
+        this->avail_a[p] = *(new Apt());
+    }else{
+        player1.buy_prop(&this->avail_h[p]);
+        this->avail_h[p] = *(new House());
     }
 }
 
