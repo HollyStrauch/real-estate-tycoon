@@ -29,14 +29,22 @@ void Game::start_game() {
         if(turn % 12 == 0){
             player1->pay_prop_tax();
         }
-        cout << "$$ You currently have $" << player1->get_bank_account() << " in your account. $$" << endl;
 
         player1->random_event();
+        cout << "\n$$ You currently have $" << player1->get_bank_account() << " in your account. $$" << endl;
         buy_sell_raise(*player1);
 
         turn++;
     }
+    end_game(*player1);
+}
 
+void Game::end_game(Player &player1) {
+    if(player1.get_bank_account() == 0){
+        cout << "XX YOU LOSE XX \n What a lousy capitalist you are. Go move to Norway." << endl;
+    }else{
+        cout << "Winner! Look at you go, you cut-throat capitalist.  Nothing can stop you now." << endl;
+    }
 }
 
 void Game::buy_sell_raise(Player &player1) {

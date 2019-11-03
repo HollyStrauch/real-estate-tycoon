@@ -22,6 +22,7 @@ public:
     bool get_input(string action);
     void buy_property(Player &player1);
     void update_listing(Player &player1, int p, int pArr);
+    void end_game(Player &player1);
 };
 
 
