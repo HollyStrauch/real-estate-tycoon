@@ -35,7 +35,7 @@ void Game::start_game() {
 
 void Game::buy_sell_raise(Player &player1) {
 
-    while (get_input("buy property")){
+    if (get_input("buy property")){
         buy_property(player1);
     }
 
