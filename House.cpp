@@ -53,17 +53,20 @@ House::House(const House &orig) {
     this->tenants = orig.tenants;
 }
 
-int House::pay_rent() const {
+int House::pay_rent(){
 
+    if ( this->num_tenants == 0){
+        return 0;
+    }
     if (this->get_tenant(0).get_budget() > this->rent) {
         return this->rent;
 
     }else if (this->get_tenant(0).get_agree() > 1){
         this->get_tenant(0).leave();
         cout << "~~ Tenant has moved out ~~" << endl;
+        this->num_tenants--;
     } else {
         cout << "XX Someone is refusing to pay rent XX" << endl;
     }
-
     return 0;
 }

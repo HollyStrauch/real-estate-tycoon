@@ -95,13 +95,13 @@ int Business::pay_rent(){
         while(!this->get_tenant(counter).get_exists()){
             counter++;
         }
-
         if (this->get_tenant(counter).get_budget() > this->rentSpace[counter]) {
             total += this->rentSpace[counter];
             this->value += this->value / 100;
         } else if (this->get_tenant(counter).get_agree() > 1) {
             this->get_tenant(counter).leave();
             cout << "~~ Tenant has moved out ~~" << endl;
+            this->num_tenants--;
         } else {
             cout << "XX Someone is refusing to pay rent XX" << endl;
         }
