@@ -227,12 +227,19 @@ void Player::pay_prop_tax() {
 }
 
 void Player::buy_prop(Property *prop) {
+    this->bank_account -= prop->get_value();
+    
     Node * newProp = new Node;
     newProp->p = prop;
     newProp->next = nullptr;
 
-    this->tail->next = newProp;
-    this->tail = newProp;
+    if(num_prop == 0){
+        this->head = newProp;
+        this->tail = newProp;
+    }else {
+        this->tail->next = newProp;
+        this->tail = newProp;
+    }
 
     num_prop++;
 }
