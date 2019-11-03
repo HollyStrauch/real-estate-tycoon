@@ -42,11 +42,13 @@ void Player::adjust_rent(){
     int index = 0;
 
     index = user_input_prop(this->num_prop);
-
-    Property* prop = get_prop(index - 1);
-    prop->set_rent();
-
-    cout << "Way to do your landlording duties you fat cat!" << endl;
+    if(index != 0) {
+        Property *prop = get_prop(index - 1);
+        prop->set_rent();
+        cout << "Way to do your landlording duties you fat cat!" << endl;
+    }else{
+        cout << "Exiting..." << endl;
+    }
 }
 
 void Player::sell_property() {
@@ -57,7 +59,7 @@ void Player::sell_property() {
 
     do {
         index = user_input_prop(this->num_prop);
-    }while(!check_avail(index - 1));
+    }while(!check_avail(index - 1) && index != 0);
 
     Property* sell = get_prop(index - 1);
     sale_price(sell->get_value());
@@ -107,7 +109,7 @@ Property* Player::get_prop(int index){
 
 int Player::user_input_prop(int total){
 
-    cout << "Enter the number of the property you would like to select" << endl;
+    cout << "## Enter the number of the property you would like to select, or '0' to exit. ##" << endl;
 
     while (true){
         string input;
@@ -115,11 +117,11 @@ int Player::user_input_prop(int total){
 
         try{
             int num = stoi(input);
-            if( num > 0 && num <= total){
+            if( num >= 0 && num <= total){
                 return num;
             }
         }catch(invalid_argument const &e){
-            cout << "Invalid entry, please try again" << endl;
+            cout << "That was not a valid number, please try again" << endl;
         }
     }
 
@@ -184,12 +186,13 @@ void Player::collect_rent() {
     int total = 0;
     Node* temp = this->head;
 
+    cout << "\n $$ First of the month! Time for RENT!! $$" << endl;
     for(int i = 0; i < this->num_prop; i++){
-        cout << "Collecting rent on property " << i << endl;
+        cout << "Collecting rent on property " << i + 1 << endl;
         total += temp->p->pay_rent();
         temp = temp->next;
     }
-
+    cout << "$$ You pulled in $" << total << ". But can you get even more?? $$" << endl;
     this->bank_account += total;
 }
 
@@ -228,7 +231,7 @@ void Player::pay_prop_tax() {
 
 void Player::buy_prop(Property *prop) {
     this->bank_account -= prop->get_value();
-    
+
     Node * newProp = new Node;
     newProp->p = prop;
     newProp->next = nullptr;
@@ -246,7 +249,7 @@ void Player::buy_prop(Property *prop) {
 
 void Player::random_event() {
 
-    cout << "?? RANDOM EVENT!! What fate shall befall your properties? ??" << endl;
+    cout << "\n?? RANDOM EVENT!! What fate shall befall your properties? ??" << endl;
 
     Node* temp = this->head;
     int event = rand() % 6 + 1;
