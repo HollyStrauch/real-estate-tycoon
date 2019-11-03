@@ -27,6 +27,7 @@ void Game::start_game() {
         player1->collect_rent();
         player1->pay_mort();
         if(turn % 12 == 0){
+            cout << "--$ Time for TAXES! $--" << endl;
             player1->pay_prop_tax();
         }
 

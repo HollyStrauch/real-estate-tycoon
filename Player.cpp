@@ -214,10 +214,11 @@ void Player::collect_rent() {
     int total = 0;
     Node* temp = this->head;
 
-    cout << "\n $$ First of the month! Time for RENT!! $$" << endl;
+    cout << "\n$$ First of the month! Time for RENT!! $$" << endl;
     for(int i = 0; i < this->num_prop; i++){
-        cout << "Collecting rent on property " << i + 1 << endl;
-        total += temp->p->pay_rent();
+        int rent =  temp->p->pay_rent();
+        cout << "Collecting $" << rent << " rent on property " << i + 1 << endl;
+        total += rent;
         temp = temp->next;
     }
     cout << "$$ You pulled in $" << total << ". But can you get even more?? $$" << endl;
