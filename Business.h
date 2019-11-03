@@ -16,6 +16,8 @@ public:
     Business();
     Business &operator= (Business &right);
     Business(const Business &orig);
+    string get_room_size(int index);
+    void print_rooms();
     virtual int pay_rent();
     virtual void set_rent();
     virtual int get_rent() const;

@@ -82,7 +82,7 @@ int Business::pay_rent(){
 
         if (this->get_tenant(counter).get_budget() > this->rentSpace[counter]) {
             total += this->rentSpace[counter];
-            this->value += this->value / 10;
+            this->value += this->value / 100;
         } else if (this->get_tenant(counter).get_agree() > 1) {
             this->get_tenant(counter).leave();
             cout << "~~ Tenant has moved out ~~" << endl;
@@ -94,8 +94,11 @@ int Business::pay_rent(){
 }
 
 void Business::set_rent() {
-    int count = 0;
+    print_rooms();
+
+    int count = -1;
     for(int i = 0; i < this->num_tenants; i++){
+        count++;
         while(!this->get_tenant(count).get_exists()){
             count++;
         }
@@ -107,6 +110,30 @@ void Business::set_rent() {
     }
 
 }
+
+void Business::print_rooms() {
+
+    cout << "Business Floor Plan: " << endl;
+    int count = -1;
+    for(int i = 0; i < this->num_tenants; i++){
+        count++;
+        while(!this->get_tenant(count).get_exists()){
+            count++;
+        }
+        cout << "Room #" << count + 1 << " Size: " << this->get_room_size(count) << " Current Rent: " << this->rentSpace[count] << endl;
+    }
+}
+
+string Business::get_room_size(int index){
+    if(this->sizes[index] == 0){
+        return "SMALL";
+    }else if(this->sizes[index] == 1){
+        return "MEDIUM";
+    }else{
+        return "LARGE";
+    }
+}
+
 
 int Business::get_rent() const {
     return 0;
