@@ -41,13 +41,34 @@ Business & Business::operator= (Business &right){
     this->num_tenants = right.num_tenants;
     this->location = right.location;
 
+    this->rentSpace = right.rentSpace;
+    this->sizes = right.sizes;
+
     this->tenants = new Tenant[num_tenants];
-    this->sizes = new int[num_tenants];
     for (int i = 0; i < num_tenants; i++){
         this->tenants[i] = right.tenants[i];
-        this->sizes[i] = right.sizes[i];
     }
     return (*this);
+}
+
+Business::Business(const Business &orig) {
+    this->value = orig.value;
+    this->mortgage = orig.mortgage;
+    this->propery_tax = orig.propery_tax;
+    this->dur_mortgage = orig.dur_mortgage;
+    this->rent = orig.rent;
+
+    this->type = orig.type;
+    this->num_tenants = orig.num_tenants;
+    this->location = orig.location;
+
+    this->rentSpace = orig.rentSpace;
+    this->sizes = orig.sizes;
+
+    this->tenants = new Tenant[num_tenants];
+    for (int i = 0; i < num_tenants; i++){
+        this->tenants[i] = orig.tenants[i];
+    }
 }
 
 int Business::pay_rent(){

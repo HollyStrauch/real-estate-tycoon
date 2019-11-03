@@ -42,6 +42,23 @@ Apt & Apt::operator= (Apt &right){
     return (*this);
 }
 
+Apt::Apt(const Apt &orig) {
+    this->value = orig.value;
+    this->mortgage = orig.mortgage;
+    this->propery_tax = orig.propery_tax;
+    this->dur_mortgage = orig.dur_mortgage;
+    this->rent = orig.rent;
+
+    this->type = orig.type;
+    this->num_tenants = orig.num_tenants;
+    this->location = orig.location;
+
+    this->tenants = new Tenant[num_tenants];
+    for (int i = 0; i < num_tenants; i++){
+        this->tenants[i] = orig.tenants[i];
+    }
+}
+
 
 int Apt::pay_rent() const {
     int total = 0;

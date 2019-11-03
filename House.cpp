@@ -39,6 +39,20 @@ House & House::operator= (House &right){
     return (*this);
 }
 
+House::House(const House &orig) {
+    this->value = orig.value;
+    this->mortgage = orig.mortgage;
+    this->propery_tax = orig.propery_tax;
+    this->dur_mortgage = orig.dur_mortgage;
+    this->rent = orig.rent;
+
+    this->type = orig.type;
+    this->num_tenants = orig.num_tenants;
+    this->location = orig.location;
+
+    this->tenants = orig.tenants;
+}
+
 int House::pay_rent() const {
 
     if (this->get_tenant(0).get_budget() > this->rent) {

@@ -26,6 +26,8 @@ protected:
 
 public:
     Property();
+    Property(const Property &orig);
+    virtual ~Property();
     virtual int get_value() const;
     virtual string get_loc() const;
     virtual int get_num_tenants() const;
@@ -38,8 +40,7 @@ public:
     virtual int get_duration() const;
     virtual int get_tax() const;
     virtual void set_rent();
-  //  Tenant* get_tenants();
-    virtual ~Property();
+
     virtual void inc_prop_val();
     virtual void dec_duration();
     virtual void hurricane();

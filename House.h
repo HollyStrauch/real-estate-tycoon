@@ -11,6 +11,7 @@ class House:public Property{
 public:
     House();
     House &operator= (House &right);
+    House(const House &orig);
     virtual int pay_rent() const;
 };
 
