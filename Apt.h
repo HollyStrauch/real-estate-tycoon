@@ -12,7 +12,12 @@ public:
     Apt();
     Apt &operator= (Apt &right);
     Apt(const Apt &orig);
-    virtual int pay_rent() const;
+    ~Apt();
+
+    ///\brief Iterates through tenants and totals the money from each one.  Tenants may move out or not pay if amount is
+    ///      too high
+    virtual int pay_rent();
+    ///\brief Sets the rent for the Apt object
     virtual void set_rent();
 };
 

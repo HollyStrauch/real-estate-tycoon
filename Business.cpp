@@ -6,7 +6,9 @@
 #include "Business.h"
 #include "Tenant.h"
 
-
+/**
+ * Constructor
+ */
 Business::Business(){
     this->value = (rand() % 3 + 4) * 100000;
     this->mortgage = (rand() % 50 + 1) * 100;
@@ -27,6 +29,11 @@ Business::Business(){
     this->set_loc();
 }
 
+/**
+ * \brief Assignment Operator Overload
+ * @param right Existing business to assign values from
+ * @return new Business
+ */
 Business & Business::operator= (Business &right){
     if (&right == this)
         return (*this);
@@ -51,6 +58,10 @@ Business & Business::operator= (Business &right){
     return (*this);
 }
 
+/**
+ * \brief Copy Constructor
+ * @param orig A Business to copy values from
+ */
 Business::Business(const Business &orig) {
     this->value = orig.value;
     this->mortgage = orig.mortgage;
@@ -71,6 +82,11 @@ Business::Business(const Business &orig) {
     }
 }
 
+/**
+ * \brief Iterates through tenants and totals the money from each one.  Tenants may move out or not pay if amount is
+ *      too high
+ * @return Total rent money collected (integer)
+ */
 int Business::pay_rent(){
     int total = 0;
     int counter = 0;
@@ -93,6 +109,9 @@ int Business::pay_rent(){
     return total;
 }
 
+/**
+ * \brief Sets the rent of each room in the Business object
+ */
 void Business::set_rent() {
     print_rooms();
 
@@ -111,6 +130,9 @@ void Business::set_rent() {
 
 }
 
+/**
+ * \brief Prints out the individual rooms that contain tenants along with their size and current rent amount
+ */
 void Business::print_rooms() {
 
     cout << "Business Floor Plan: " << endl;
@@ -124,6 +146,11 @@ void Business::print_rooms() {
     }
 }
 
+/**
+ *  \brief Returns a string value "small", "medium" or "large" based on the sizes array index
+ * @param index Specifies which room in the sizes array
+ * @return the corresponding string
+ */
 string Business::get_room_size(int index){
     if(this->sizes[index] == 0){
         return "SMALL";
@@ -134,7 +161,10 @@ string Business::get_room_size(int index){
     }
 }
 
-
+/**
+ * \brief Overrides Property get_rent, Business has no individual rent value
+ * @return 0
+ */
 int Business::get_rent() const {
     return 0;
 }

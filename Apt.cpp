@@ -5,6 +5,9 @@
 #include "Apt.h"
 #include <iostream>
 
+/**
+ * \brief constructor
+ */
 Apt::Apt(){
     this->value = (rand() % 4 + 3) * 100000;
     this->mortgage = (rand() % 50 + 1) * 100;
@@ -20,6 +23,11 @@ Apt::Apt(){
     this->set_loc();
 }
 
+/**
+ * \brief Assignment operator override
+ * @param right The Apt to assign values from
+ * @return new Apt
+ */
 Apt & Apt::operator= (Apt &right){
 
     if (&right == this)
@@ -42,6 +50,10 @@ Apt & Apt::operator= (Apt &right){
     return (*this);
 }
 
+/**
+ * \brief Copy Constructor
+ * @param orig Apt
+ */
 Apt::Apt(const Apt &orig) {
     this->value = orig.value;
     this->mortgage = orig.mortgage;
@@ -59,8 +71,20 @@ Apt::Apt(const Apt &orig) {
     }
 }
 
+/**
+ * \brief Destructor
+ */
+Apt::~Apt(){
+    delete tenants;
+    tenants = nullptr;
+}
 
-int Apt::pay_rent() const {
+/**
+ * \brief Iterates through tenants and totals the money from each one.  Tenants may move out or not pay if amount is
+ *      too high
+ * @return Total rent money collected (integer)
+ */
+int Apt::pay_rent(){
     int total = 0;
     int counter = 0;
 
@@ -82,6 +106,9 @@ int Apt::pay_rent() const {
     return total;
 }
 
+/**
+ * \brief Sets the rent for the Apt object
+ */
 void Apt::set_rent() {
     cout << "Current rent: " << this->rent << "\n Enter new rent amount: " << endl;
     int price = user_input_price();
