@@ -48,7 +48,7 @@ bool Tenant::get_exists() const {
     return this->exists;
 }
 
-void Tenant::set_not_exist() {
+void Tenant::leave() {
     this->exists = false;
 }
 

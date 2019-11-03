@@ -21,7 +21,7 @@ public:
     int get_budget() const;
     bool get_type() const;
     bool get_exists() const;
-    void set_not_exist();
+    void leave();
     void set_business();
 };
 #endif //REAL_ESTATE_TYCOON_TENANT_H
