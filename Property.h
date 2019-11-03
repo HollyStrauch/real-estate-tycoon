@@ -49,9 +49,10 @@ public:
     virtual void wildfire();
     virtual void crash();
     virtual void gent(string loc);
-    virtual void random_event(int event);
+    virtual void random_event(int event, string loc);
 
     static int user_input_price();
+    static string generate_loc();
 
 
 

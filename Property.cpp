@@ -38,7 +38,7 @@ Property::Property(const Property &orig) {
     this->tenants = orig.tenants;
 }
 
-void Property::random_event(int event) {
+void Property::random_event(int event, string loc) {
 
     switch (event)
     {
@@ -52,7 +52,7 @@ void Property::random_event(int event) {
             break;
         case 5: this->crash();
             break;
-        case 6: this->gent("temp");
+        case 6: this->gent(loc);
             break;
     }
 }
@@ -98,14 +98,36 @@ void Property::wildfire(){
 }
 
 void Property::crash(){
-    cout << "--$ STOCK MARKET CRASH! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
     this->value *= .7;
+    cout << "--$ STOCK MARKET CRASH! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
+
 }
 
 void Property::gent(string loc){
-    this->value += this->value * .2 ;
+    if(!this->location.compare(loc)){
+        return;
+    }
+    this->value += this->value / 5;
     cout << "++$ GENTRIFICATION! yay...? " << this->get_type() << " property value rose to $" << this->value << " $++" << endl;
 
+}
+
+string Property::generate_loc() {
+    int loc = rand() % 5;
+
+    switch(loc) {
+        case 0:
+            return "NW";
+        case 1:
+            return "SE";
+        case 2:
+            return "NE";
+        case 3:
+            return "MW";
+        case 4:
+            return "SW";
+    }
+    return "";
 }
 
 void Property::set_loc(){
