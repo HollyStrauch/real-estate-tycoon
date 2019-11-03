@@ -6,6 +6,24 @@
 #include <iostream>
 #include "Property.h"
 
+Property::Property() {
+    this->value = 0;
+    this->mortgage = 0;
+    this->propery_tax = 0;
+    this->dur_mortgage = 0;
+    this->rent = 0;
+
+    this->type = "";
+    this->num_tenants = 0;
+    this->tenants = nullptr;
+    this->location = "";
+}
+
+Property::~Property(){
+    delete tenants;
+    tenants = nullptr;
+}
+
 void Property::random_event(int event) {
 
     switch (event)
@@ -141,10 +159,29 @@ void Property::dec_duration(){
     this->dur_mortgage--;
 }
 
-void Property::set_rent(int price){
+void Property::set_rent() {
+    cout << "Current rent: " << this->rent << "\n Enter new rent amount: " << endl;
+    int price = user_input_price();
+
     this->rent = price;
 }
 
+int Property::user_input_price(){
+
+    while (true){
+        string input;
+        getline(cin, input);
+
+        try{
+            int num = stod(input);
+            if( num > 0 ){
+                return num;
+            }
+        }catch(invalid_argument const &e){
+            cout << "Invalid entry, please try again" << endl;
+        }
+    }
+}
 
 std::string Property::toString() const {
 

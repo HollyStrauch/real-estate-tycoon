@@ -25,7 +25,7 @@ protected:
     void set_loc();
 
 public:
-   // Property();
+    Property();
     virtual int get_value() const;
     virtual string get_loc() const;
     virtual int get_num_tenants() const;
@@ -36,10 +36,9 @@ public:
     virtual int get_rent() const;
     virtual int get_duration() const;
     virtual int get_tax() const;
-    virtual void set_rent(int price);
+    virtual void set_rent();
   //  Tenant* get_tenants();
- //   Property gen_random(int event);
-  //  ~Property();
+    virtual ~Property();
     virtual void inc_prop_val();
     virtual void dec_duration();
     virtual void hurricane();
@@ -49,6 +48,8 @@ public:
     virtual void crash();
     virtual void gent(string loc);
     virtual void random_event(int event);
+
+    static int user_input_price();
 
 
 
