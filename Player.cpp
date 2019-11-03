@@ -180,29 +180,17 @@ int Player::get_bank_account() {
     return this->bank_account;
 }
 
-//may change to collect separately between business and citizen
 void Player::collect_rent() {
-
+    int total = 0;
     Node* temp = this->head;
+
     for(int i = 0; i < this->num_prop; i++){
-        int counter = 0;
-        for(int j = 0; j < temp->p->get_num_tenants(); j++){
-            while(!temp->p->get_tenant(counter).get_exists()){
-                counter++;
-            }
-            if (temp->p->get_tenant(counter).get_budget() > temp->p->get_rent()){
-                this->bank_account += temp->p->get_rent();
-
-                if (! temp->p->get_tenant(counter).get_type()){
-                    temp->p->inc_prop_val();
-                }
-            }else if (temp->p->get_tenant(counter).get_agree() > 1){
-                temp->p->get_tenant(counter).set_not_exist();
-            }
-
-        }
+        cout << "Collecting rent on property " << i << endl;
+        total += temp->p->get_rent();
         temp = temp->next;
     }
+
+    this->bank_account += total;
 }
 
 void Player::pay_mort() {
