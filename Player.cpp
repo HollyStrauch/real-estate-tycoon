@@ -111,7 +111,7 @@ void Player::del_node(int index) {
 
     if (index == this->num_prop - 1){
         this->tail = temp;
-        delete temp->p;
+        delete temp->next->p;
         temp->next->next = nullptr;
         delete temp->next;
         this->tail->next = nullptr;
@@ -289,6 +289,7 @@ void Player::random_event() {
 
     for(int i = 0; i < this->num_prop; i++){
         temp->p->random_event(event, loc);
+        temp = temp->next;
     }
 
 }
