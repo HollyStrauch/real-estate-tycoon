@@ -40,11 +40,35 @@ void Game::start_game() {
     end_game(*player1);
 }
 
+void Game::intro(){
+    for(int i = 0; i < 20; i++){
+        cout << "$$$$";
+    }
+    cout << "\n WELCOME TO REAL ESTATE TYCOON! \nBUY, SELL, AND UP YOUR RENT UNTIL YOU BECOME A MILLIONAIRE! (or go broke)" << endl;
+    cout << "\t\tLET THE CAPITALIST GAMES BEGIN!" << endl;
+    for(int i = 0; i < 20; i++){
+        cout << "$$$$";
+    }
+    cout << endl;
+}
+
 void Game::end_game(Player &player1) {
     if(player1.get_bank_account() == 0){
-        cout << "XX YOU LOSE XX \n What a lousy capitalist you are. Go move to Norway." << endl;
+        for(int i = 0; i < 20; i++){
+            cout << "XXXX";
+        }
+        cout << "\nYOU LOSE\n What a lousy capitalist you are. Go move to Norway." << endl;
+        for(int i = 0; i < 20; i++){
+            cout << "XXXX";
+        }
     }else{
-        cout << "Winner! Look at you go, you cut-throat capitalist.  Nothing can stop you now." << endl;
+        for(int i = 0; i < 20; i++){
+            cout << "$$$$";
+        }
+        cout << "\nWINNER!\n Look at you go, you cut-throat capitalist.  Nothing can stop you now." << endl;
+        for(int i = 0; i < 20; i++){
+            cout << "$$$$";
+        }
     }
 }
 
@@ -56,10 +80,12 @@ void Game::buy_sell_raise(Player &player1) {
 
     while (get_input("sell property")){
         player1.sell_property();
+        cout << "Any others?" << endl;
     }
 
     while (get_input("adjust rent")){
         player1.adjust_rent();
+        cout << "Any others?" << endl;
     }
 }
 

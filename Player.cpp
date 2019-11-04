@@ -156,21 +156,23 @@ int Player::user_input_prop(int total){
 }
 
 void Player::sale_price(double prop_value) {
-
-    cout << "Enter the amount you'd like to sell the property for";
+    cout << "Enter the amount you'd like to sell the property for: ";
     double price = user_input_price();
     int r = rand() % 3 + 1;
+    int final = 0;
 
     switch(r){
         case 1: cout << "What a fantastic piece of property!! Your price as been accepted!" << endl;
-            this->bank_account += (int) price;
+            final = (int) price;
             break;
         case 2: cout << "The buyer will pay the property value" << endl;
-            this->bank_account += (int) prop_value;
+            final = (int) prop_value;
             break;
         case 3: cout << "No one likes your property. You'll get 10% less than property value" << endl;
-            this->bank_account += (int)(prop_value * .9);
+            final = (int)(prop_value * .9);
     }
+    this->bank_account += final;
+    cout << "$$ PROPERTY SOLD FOR $" << final << " $$" << endl;
 }
 
 int Player::user_input_price(){
@@ -216,8 +218,9 @@ void Player::collect_rent() {
 
     cout << "\n$$ First of the month! Time for RENT!! $$" << endl;
     for(int i = 0; i < this->num_prop; i++){
+        cout << "COLLECTING RENT ON PROPERTY " << i + 1 << endl;
         int rent =  temp->p->pay_rent();
-        cout << "Collecting $" << rent << " rent on property " << i + 1 << endl;
+        cout << "Collected $" << rent << " rent on property " << i + 1 << endl;
         total += rent;
         temp = temp->next;
     }

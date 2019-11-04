@@ -17,6 +17,7 @@ class Game {
 public:
     Game();
     void start_game();
+    void intro();
     void print_avail_p();
     void buy_sell_raise(Player &player1);
     bool get_input(string action);
