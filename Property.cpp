@@ -166,7 +166,7 @@ int Property::get_tax() const {
 }
 
 void Property::inc_prop_val(){
-    this->value += (int)(this->value *.01);
+    this->value += (this->value / 100);
     this->propery_tax = this->value * .015;
 }
 
