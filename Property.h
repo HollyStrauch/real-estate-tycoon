@@ -19,7 +19,7 @@ protected:
     int num_tenants;
     int rent;
     Tenant* tenants;
-    string location;
+    int location;
     string type;
 
     void set_loc();
@@ -29,7 +29,7 @@ public:
     Property(const Property &orig);
     virtual ~Property();
     virtual int get_value() const;
-    virtual string get_loc() const;
+    virtual string get_loc(int loc) const;
     virtual int get_num_tenants() const;
     virtual string get_type() const;
     virtual int get_mort() const;
@@ -48,11 +48,11 @@ public:
     virtual void earthquake();
     virtual void wildfire();
     virtual void crash();
-    virtual void gent(string loc);
-    virtual void random_event(int event, string loc);
+    virtual void gent(int loc);
+    virtual void random_event(int event, int loc);
 
     static int user_input_price();
-    static string generate_loc();
+
 
 
 

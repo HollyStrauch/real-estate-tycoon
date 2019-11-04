@@ -15,7 +15,7 @@ House::House(){
     this->type = "HOUSE";
     this->num_tenants = 1;
     this->tenants = new Tenant(true);
-    this->set_loc();
+    this->location = rand() % 5;
 
 }
 

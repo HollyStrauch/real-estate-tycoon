@@ -16,7 +16,7 @@ Property::Property() {
     this->type = "";
     this->num_tenants = 0;
     this->tenants = nullptr;
-    this->location = "";
+    this->location = rand() % 5;
 }
 
 Property::~Property(){
@@ -38,7 +38,7 @@ Property::Property(const Property &orig) {
     this->tenants = orig.tenants;
 }
 
-void Property::random_event(int event, string loc) {
+void Property::random_event(int event, int loc) {
 
     switch (event)
     {
@@ -59,7 +59,7 @@ void Property::random_event(int event, string loc) {
 
 void Property::hurricane() {
 
-    if(!this->location.compare("SE")){
+    if(this->location != 1){
         return;
     }
 
@@ -70,7 +70,7 @@ void Property::hurricane() {
 
 void Property::tornado() {
 
-    if(!this->location.compare("MW")){
+    if(this->location != 3){
         return;
     }
 
@@ -80,7 +80,7 @@ void Property::tornado() {
 
 void Property::earthquake() {
 
-    if(!this->location.compare("NW")){
+    if(this->location != 0){
         return;
     }
 
@@ -89,7 +89,7 @@ void Property::earthquake() {
 }
 
 void Property::wildfire(){
-    if(!this->location.compare("SW")){
+    if(this->location != 4){
         return;
     }
 
@@ -103,8 +103,8 @@ void Property::crash(){
 
 }
 
-void Property::gent(string loc){
-    if(!this->location.compare(loc)){
+void Property::gent(int loc){
+    if(this->location != loc){
         return;
     }
     this->value += this->value / 5;
@@ -112,8 +112,7 @@ void Property::gent(string loc){
 
 }
 
-string Property::generate_loc() {
-    int loc = rand() % 5;
+string Property::get_loc(int loc) const{
 
     switch(loc) {
         case 0:
@@ -130,36 +129,12 @@ string Property::generate_loc() {
     return "";
 }
 
-void Property::set_loc(){
-    int loc = rand() % 5;
-
-    switch(loc) {
-        case 0:
-            this->location = "NW";
-            break;
-        case 1:
-            this->location = "SE";
-            break;
-        case 2:
-            this->location = "NE";
-            break;
-        case 3:
-            this->location = "MW";
-            break;
-        case 4:
-            this->location = "SW";
-    }
-}
-
 string Property::get_type() const{
     return type;
 }
 
 int Property::get_value() const{
     return this->value;
-}
-string Property::get_loc() const{
-    return this->location;
 }
 
 int Property::get_num_tenants() const{
@@ -224,15 +199,15 @@ int Property::user_input_price(){
 }
 
 std::string Property::toString() const {
-
-    cout << std::setprecision(2) << std::fixed;
+    string val = to_string(this->get_value());
+    val.resize(8);
     string prop;
 
     prop.append(this->get_type());
     prop.append("\t $");
-    prop.append(to_string(this->get_value()));
+    prop.append(val);
     prop.append("\t ");
-    prop.append(get_loc());
+    prop.append(get_loc(this->location));
     prop.append("\t ");
     prop.append(to_string(this->get_num_tenants()));
     prop.append("\t $");

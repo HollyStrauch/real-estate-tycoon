@@ -282,7 +282,7 @@ void Player::random_event() {
 
     Node* temp = this->head;
     int event = rand() % 6 + 1;
-    string loc = Property::generate_loc();
+    int loc = rand() % 5;
 
     for(int i = 0; i < this->num_prop; i++){
         temp->p->random_event(event, loc);

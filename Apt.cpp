@@ -20,7 +20,7 @@ Apt::Apt(){
 
     this->tenants = new Tenant[num_tenants];
 
-    this->set_loc();
+    this->location = rand() % 5;
 }
 
 /**

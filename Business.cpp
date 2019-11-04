@@ -26,7 +26,7 @@ Business::Business(){
         this->sizes[i] = rand() % 3;
         this->rentSpace[i] = 0;
     }
-    this->set_loc();
+    this->location = rand() % 5;
 }
 
 /**
