@@ -20,6 +20,7 @@ Game::Game(){
 
 void Game::start_game() {
     Player* player1 = new Player("Holly");
+    intro();
     int turn = 1;
 
     while(player1->get_bank_account() < 1000000 && player1->get_bank_account() > 0) {
