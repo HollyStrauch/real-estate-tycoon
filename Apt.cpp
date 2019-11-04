@@ -86,12 +86,13 @@ Apt::~Apt(){
  */
 int Apt::pay_rent(){
     int total = 0;
-    int counter = 0;
+    int counter = -1;
+    int num_ten = this->num_tenants;
 
-    for(int i = 0; i < this->num_tenants; i++) {
-        while(!this->get_tenant(counter).get_exists()){
+    for(int i = 0; i < num_ten; i++) {
+        do{
             counter++;
-        }
+        }while(!this->get_tenant(counter).get_exists());
 
         if (this->get_tenant(counter).get_budget() > this->rent) {
             total += this->rent;
