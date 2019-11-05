@@ -1,6 +1,17 @@
-//
-// Created by Holly Strauch on 10/28/2019.
-//
+/**
+ * Program: Real Estate Tycoon
+ * Author: Holly Strauch
+ * 11/5/19
+ * File: Game.h
+ *
+ * Runs a Real Estate Tycoon game where the player can buy different types of properties, adjust and collect rent on
+ * them and sell properties.  Player must pay mortgages and taxes, and random events can occur that will effect the
+ * current property values.  Tenants on properties may leave or refuse to pay rent if it is too high.  Player will win
+ * if their bank account hits $1,000,000 and lose if it hits $0;
+ *
+ * Game files runs the main functionality of the game.  It tracks and controls each turn and contains those properties
+ * which the player can purchase
+ */
 
 #ifndef REAL_ESTATE_TYCOON_GAME_H
 #define REAL_ESTATE_TYCOON_GAME_H

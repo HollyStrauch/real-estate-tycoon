@@ -1,11 +1,25 @@
-//
-// Created by Holly Strauch on 10/25/2019.
-//
+/**
+ * Program: Real Estate Tycoon
+ * Author: Holly Strauch
+ * 11/5/19
+ * File: Property.cpp
+ *
+ * Runs a Real Estate Tycoon game where the player can buy different types of properties, adjust and collect rent on
+ * them and sell properties.  Player must pay mortgages and taxes, and random events can occur that will effect the
+ * current property values.  Tenants on properties may leave or refuse to pay rent if it is too high.  Player will win
+ * if their bank account hits $1,000,000 and lose if it hits $0;
+ *
+ * Property is the parent class that contains getters and the random events that can happen to property
+ */
 
 #include <iomanip>
 #include <iostream>
 #include "Property.h"
+#include "Tenant.h"
 
+/**
+ * Default Constructor sets all values to 0.
+ */
 Property::Property() {
     this->value = 0;
     this->mortgage = 0;
@@ -16,14 +30,20 @@ Property::Property() {
     this->type = "";
     this->num_tenants = 0;
     this->tenants = nullptr;
-    this->location = rand() % 5;
+    this->location = 0;
 }
 
-Property::~Property(){
+/**
+ * Destructor
+ */
+Property::~Property() {
     delete tenants;
-    tenants = nullptr;
 }
 
+/**
+ * Property copy constructor
+ * @param orig
+ */
 Property::Property(const Property &orig) {
     this->value = orig.value;
     this->mortgage = orig.mortgage;
@@ -57,6 +77,9 @@ void Property::random_event(int event, int loc) {
     }
 }
 
+/**
+ * \brief decrease property value of properties in the SE by 50%
+ */
 void Property::hurricane() {
 
     if(this->location != 1){
@@ -68,6 +91,9 @@ void Property::hurricane() {
 
 }
 
+/**
+ * \brief decrease property value of properties in the MW by 30%
+ */
 void Property::tornado() {
 
     if(this->location != 3){
@@ -78,16 +104,22 @@ void Property::tornado() {
     cout << "--$ TORNADO IN THE MW! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
 }
 
+/**
+ * \brief decrease property value of properties in the NW to 10%
+ */
 void Property::earthquake() {
 
     if(this->location != 0){
         return;
     }
 
-    this->value *= .9;
+    this->value /= 10;
     cout << "--$ EARTHQUAKE IN THE NW! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
 }
 
+/**
+ * \brief decrease property value of properties in the SW by 25%
+ */
 void Property::wildfire(){
     if(this->location != 4){
         return;
@@ -97,21 +129,34 @@ void Property::wildfire(){
     cout << "--$ WILDFIRE IN THE SW! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
 }
 
+/**
+ * \brief decrease property value by 30%
+ */
 void Property::crash(){
     this->value *= .7;
     cout << "--$ STOCK MARKET CRASH! " << this->get_type() << " property value dropped to $" << this->value << " $--" << endl;
 
 }
 
+/**
+ * \brief Increase property value at the location by 20%
+ * @param loc, the location that values will be increased at
+ */
 void Property::gent(int loc){
     if(this->location != loc){
         return;
     }
     this->value += this->value / 5;
-    cout << "++$ GENTRIFICATION! yay...? " << this->get_type() << " property value rose to $" << this->value << " $++" << endl;
+    cout << "++$ GENTRIFICATION! yay...? " << this->get_type() << " property value rose to $" << this->value << " in the "
+        << get_loc(loc) << " $++" << endl;
 
 }
 
+/**
+ * \brief returns a string representation of the location
+ * @param loc, the integer representation of the location
+ * @return A string location
+ */
 string Property::get_loc(int loc) const{
 
     switch(loc) {
@@ -181,6 +226,10 @@ void Property::set_rent() {
     this->rent = price;
 }
 
+/**
+ * \brief Gets an integer from the user and validates its correctness
+ * @return The integer inputted from the user
+ */
 int Property::user_input_price(){
 
     while (true){
@@ -198,6 +247,10 @@ int Property::user_input_price(){
     }
 }
 
+/**
+ * Creates a string representation of the property
+ * @return The string representation
+ */
 std::string Property::toString() const {
     string val = to_string(this->get_value());
     val.resize(8);

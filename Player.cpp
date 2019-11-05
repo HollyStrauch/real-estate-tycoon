@@ -1,6 +1,16 @@
-//
-// Created by Holly Strauch on 10/25/2019.
-//
+/**
+ * Program: Real Estate Tycoon
+ * Author: Holly Strauch
+ * 11/5/19
+ * File: Player.cpp
+ *
+ * Runs a Real Estate Tycoon game where the player can buy different types of properties, adjust and collect rent on
+ * them and sell properties.  Player must pay mortgages and taxes, and random events can occur that will effect the
+ * current property values.  Tenants on properties may leave or refuse to pay rent if it is too high.  Player will win
+ * if their bank account hits $1,000,000 and lose if it hits $0;
+ *
+ * Player defines the player's state including the properties they own and the actions they can perform on them
+ */
 
 #include <iostream>
 #include <cstdlib>
@@ -51,6 +61,10 @@ void Player::adjust_rent(){
     }
 }
 
+/**
+ * \brief Select a property, enter a desired listing price, and sell property.  Final price is decided randomly between
+ *  asking price, property value, or 10% below property value
+ */
 void Player::sell_property() {
 
     cout << "$$ SELL PROPERTIES $$ \n Listing all owned properties.  Properties must contain no tenants in order to sell." << endl;
@@ -70,6 +84,9 @@ void Player::sell_property() {
     }
 }
 
+/**
+ * \brief Print off all owned properties
+ */
 void Player::print_prop() {
 
     cout <<  "Location\t Value\t\t Loc\tTenants\tRent\t Mortgage\tPayments" << endl;
@@ -83,6 +100,10 @@ void Player::print_prop() {
 
 }
 
+/**
+ * Delete a Node at the specified index
+ * @param index, the location of the Node in the linked list
+ */
 void Player::del_at_index(int index){
 
     Node* temp = this->head;
@@ -103,6 +124,10 @@ void Player::del_at_index(int index){
     this->num_prop--;
 }
 
+/**
+ * \brief deletes nodes not at the front of the list or when list length == 1
+ * @param index, the location of the Node in the linked list
+ */
 void Player::del_node(int index) {
     Node* temp = this->head;
     for(int i = 0; i < index - 1; i++){
@@ -124,7 +149,11 @@ void Player::del_node(int index) {
     }
 }
 
-
+/**
+ * \brief Get a pointer to a property from a Node
+ * @param index, the location of the Node in the linked list
+ * @return a pointer to the property
+ */
 Property* Player::get_prop(int index){
     Node* temp = this->head;
     for(int i = 0; i < index; i++){
@@ -134,7 +163,11 @@ Property* Player::get_prop(int index){
     return temp->p;
 }
 
-
+/**
+ * \brief Gets integer input from user and validates that it is correct
+ * @param total, the max integer accepted from the user
+ * @return the integer number entered by the user
+ */
 int Player::user_input_prop(int total){
 
     cout << "## Enter the number of the property you would like to select, or '0' to exit. ##" << endl;
@@ -155,6 +188,11 @@ int Player::user_input_prop(int total){
 
 }
 
+/**
+ * \brief Takes int value from user as desired price, then randomly picks between selling property for your price,
+ *  property value, or 10% under. Updates bank account
+ * @param prop_value, the current value of the property
+ */
 void Player::sale_price(double prop_value) {
     cout << "Enter the amount you'd like to sell the property for: ";
     double price = user_input_price();
@@ -175,6 +213,10 @@ void Player::sale_price(double prop_value) {
     cout << "$$ PROPERTY SOLD FOR $" << final << " $$" << endl;
 }
 
+/**
+ * \brief Reads in a price from the user and validates that it is correct
+ * @return The inputted price
+ */
 int Player::user_input_price(){
 
     while (true){
@@ -192,6 +234,11 @@ int Player::user_input_price(){
     }
 }
 
+/**
+ * \brief Check if there are no existing tenants in a property
+ * @param index, the index of the Node containing the desired property
+ * @return boolean true if there are no tenants, false otherwise
+ */
 bool Player::check_avail(int index){
     Node* temp = this->head;
 
@@ -208,10 +255,17 @@ bool Player::check_avail(int index){
     }
 }
 
+/**
+ * \brief gets the player's current bank_account
+ * @return bank_account
+ */
 int Player::get_bank_account() {
     return this->bank_account;
 }
 
+/**
+ * \brief iterates through all properties and collects rent
+ */
 void Player::collect_rent() {
     int total = 0;
     Node* temp = this->head;
@@ -228,6 +282,9 @@ void Player::collect_rent() {
     this->bank_account += total;
 }
 
+/**
+ * \brief iterates through all properties and deducts mortgage from current bank account
+ */
 void Player::pay_mort() {
     Node* temp = this->head;
 
@@ -248,6 +305,9 @@ void Player::pay_mort() {
     }
 }
 
+/**
+ * \brief iterates through properties and deducts property tax from bank account
+ */
 void Player::pay_prop_tax() {
     Node* temp = this->head;
 
@@ -261,6 +321,10 @@ void Player::pay_prop_tax() {
     cout << "Was it worth it?" << endl;
 }
 
+/**
+ * \brief Deducts value of property from bank account and adds a new Node containing the property
+ * @param prop The new property being added to the player's list
+ */
 void Player::buy_prop(Property *prop) {
     this->bank_account -= prop->get_value();
 
@@ -279,6 +343,9 @@ void Player::buy_prop(Property *prop) {
     num_prop++;
 }
 
+/**
+ * \brief Picks a random event and iterates through all properties, applying where applicable
+ */
 void Player::random_event() {
 
     cout << "\n?? RANDOM EVENT!! What fate shall befall your properties? ??" << endl;

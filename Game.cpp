@@ -1,25 +1,28 @@
-//
-// Created by Holly Strauch on 10/28/2019.
-//
+/**
+ * Program: Real Estate Tycoon
+ * Author: Holly Strauch
+ * 11/5/19
+ * File: Game.cpp
+ *
+ * Runs a Real Estate Tycoon game where the player can buy different types of properties, adjust and collect rent on
+ * them and sell properties.  Player must pay mortgages and taxes, and random events can occur that will effect the
+ * current property values.  Tenants on properties may leave or refuse to pay rent if it is too high.  Player will win
+ * if their bank account hits $1,000,000 and lose if it hits $0;
+ *
+ * Game files runs the main functionality of the game.  It tracks and controls each turn and contains those properties
+ * which the player can purchase
+ */
 
 #include <iostream>
 #include "Game.h"
 #include "Player.h"
 
-Game::Game(){
-    this->avail_h = new House*;
-    this->avail_b = new Business*;
-    this->avail_a = new Apt*;
 
-    for(int i = 0; i < 3; i++) {
-        this->avail_a[i] = new Apt();
-        this->avail_h[i] = new House();
-        this->avail_b[i] = new Business();
-    }
-}
-
+/**
+ * \brief Runs the entire game
+ */
 void Game::start_game() {
-    Player* player1 = new Player("Holly");
+    Player* player1 = new Player();
     intro();
     int turn = 1;
 
@@ -31,7 +34,6 @@ void Game::start_game() {
             cout << "--$ Time for TAXES! $--" << endl;
             player1->pay_prop_tax();
         }
-
         player1->random_event();
         cout << "\n$$ You currently have $" << player1->get_bank_account() << " in your account. $$" << endl;
         buy_sell_raise(*player1);
@@ -53,6 +55,10 @@ void Game::intro(){
     cout << endl;
 }
 
+/**
+ * \brief Prints out ending state to console
+ * @param player1, the current player
+ */
 void Game::end_game(Player &player1) {
     if(player1.get_bank_account() == 0){
         for(int i = 0; i < 20; i++){
@@ -73,6 +79,10 @@ void Game::end_game(Player &player1) {
     }
 }
 
+/**
+ * \brief Prompts user to buy any of 3 properties, sell any number of properties, and adjust any number of rent amounts.
+ * @param player1, the current player
+ */
 void Game::buy_sell_raise(Player &player1) {
 
     if (get_input("buy property")){
@@ -90,6 +100,10 @@ void Game::buy_sell_raise(Player &player1) {
     }
 }
 
+/**
+ * \brief Selects a random house, apt, and business that the user has the potential to buy
+ * @param player1, the current player
+ */
 void Game::buy_property(Player &player1) {
     int p1 = rand() % 3;
     int p2 = rand() % 3;
@@ -112,6 +126,12 @@ void Game::buy_property(Player &player1) {
     }
 }
 
+/**
+ * \brief Transfers the purchased property to the player and generate a new property in its place
+ * @param player1, the current property
+ * @param p the index of the property in the game property array
+ * @param pArr specifies which game property array
+ */
 void Game::update_listing(Player &player1, int p, int pArr){
 
     if(pArr == 1){
@@ -126,6 +146,9 @@ void Game::update_listing(Player &player1, int p, int pArr){
     }
 }
 
+/**
+ * \brief prints out all the game properties
+ */
 void Game::print_avail_p() {
 
     cout << "Location\t Value\t\t Loc\tTenants\tRent\t Mortgage\tPayments" << endl;
@@ -142,6 +165,11 @@ void Game::print_avail_p() {
     }
 }
 
+/**
+ * Gets 'y' or 'n' input from user, validates if input is correct
+ * @param action, a string denoting what the input is being applied to
+ * @return boolean true if y, false if n
+ */
 bool Game::get_input(const string action) {
 
     cout << "Would you like to " << action << "? y/n:";

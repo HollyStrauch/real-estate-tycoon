@@ -1,7 +1,16 @@
-//
-// Created by Holly Strauch on 10/27/2019.
-//
-
+/**
+ * Program: Real Estate Tycoon
+ * Author: Holly Strauch
+ * 11/5/19
+ * File: Apt.cc
+ *
+ * Runs a Real Estate Tycoon game where the player can buy different types of properties, adjust and collect rent on
+ * them and sell properties.  Player must pay mortgages and taxes, and random events can occur that will effect the
+ * current property values.  Tenants on properties may leave or refuse to pay rent if it is too high.  Player will win
+ * if their bank account hits $1,000,000 and lose if it hits $0;
+ *
+ * Apt file creates a property with several rooms all with the same rent amount.
+ */
 #include "Apt.h"
 #include <iostream>
 
@@ -28,7 +37,7 @@ Apt::Apt(){
  * @param right The Apt to assign values from
  * @return new Apt
  */
-Apt & Apt::operator= (Apt &right){
+Apt & Apt::operator= (const Apt &right){
 
     if (&right == this)
         return (*this);
@@ -75,7 +84,7 @@ Apt::Apt(const Apt &orig) {
  * \brief Destructor
  */
 Apt::~Apt(){
-    delete tenants;
+    delete[] tenants;
     tenants = nullptr;
 }
 
