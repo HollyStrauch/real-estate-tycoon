@@ -24,8 +24,9 @@ class Business: public Property {
     void set_spaces();
 public:
     Business();
-    Business &operator= (Business &right);
+    Business &operator= (const Business &right);
     Business(const Business &orig);
+    ~Business();
     /// Returns a string value "small", "medium" or "large" based on the sizes array index
     string get_room_size(int index);
     ///Prints out the individual rooms that contain tenants along with their size and current rent amount

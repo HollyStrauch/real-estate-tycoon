@@ -43,6 +43,77 @@ void Game::start_game() {
     end_game(*player1);
 }
 
+/**
+ * Constructor
+ */
+Game::Game(){
+    this->avail_h = new House*;
+    this->avail_b = new Business*;
+    this->avail_a = new Apt*;
+
+    for(int i = 0; i < 3; i++) {
+        this->avail_a[i] = new Apt();
+        this->avail_h[i] = new House();
+        this->avail_b[i] = new Business();
+    }
+}
+
+/**
+ * Destructor
+ */
+Game::~Game(){
+    for(int i = 0; i < 3; i++) {
+        delete this->avail_a[i];
+        delete this->avail_h[i];
+        delete this->avail_b[i];
+    }
+    delete this->avail_a;
+    delete this->avail_b;
+    delete this->avail_h;
+}
+
+/**
+ * Copy Constructor
+ * @param orig
+ */
+Game::Game(const Game &orig){
+    this->avail_h = new House*;
+    this->avail_b = new Business*;
+    this->avail_a = new Apt*;
+
+    for(int i = 0; i < 3; i++) {
+        this->avail_a[i] = orig.avail_a[i];
+        this->avail_h[i] = orig.avail_h[i];
+        this->avail_b[i] = orig.avail_b[i];
+    }
+}
+
+/**
+ * Assignment operator
+ * @param orig
+ * @return
+ */
+Game &Game::operator=(const Game &orig) {
+    if (&orig == this)
+        return (*this);
+
+    this->avail_h = new House*;
+    this->avail_b = new Business*;
+    this->avail_a = new Apt*;
+
+    for(int i = 0; i < 3; i++) {
+        this->avail_a[i] = orig.avail_a[i];
+        this->avail_h[i] = orig.avail_h[i];
+        this->avail_b[i] = orig.avail_b[i];
+    }
+
+    return (*this);
+}
+
+
+/**
+ * \brief prints out introduction to console
+ */
 void Game::intro(){
     for(int i = 0; i < 20; i++){
         cout << "$$$$";
@@ -184,6 +255,6 @@ bool Game::get_input(const string action) {
             return false;
         }
 
-        cout << "?? What was that? Please enter y or n. I believe in you. ??" << endl;
+        cout << "?? What was that? Please enter y or n. I believe in you." << endl;
     }
 }

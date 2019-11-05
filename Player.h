@@ -19,7 +19,6 @@
 class Player{
     int bank_account;
     int num_prop;
-    //Property* props;
     string name;
 
     struct Node {
@@ -32,8 +31,10 @@ class Player{
     void del_node(int index);
 
 public:
-    Player(string name);
+    Player();
     ~Player();
+    Player(const Player &orig);
+    Player &operator= (const Player &orig);
     void sell_property();
     void print_prop();
     void buy_prop(Property* prop);

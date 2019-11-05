@@ -20,8 +20,9 @@
 class House:public Property{
 public:
     House();
-    House &operator= (House &right);
+    House &operator= (const House &right);
     House(const House &orig);
+    ~House();
     virtual int pay_rent();
 };
 

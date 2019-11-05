@@ -58,6 +58,34 @@ Property::Property(const Property &orig) {
     this->tenants = orig.tenants;
 }
 
+/**
+ * \brief assingment operator
+ * @param orig
+ * @return
+ */
+Property &Property::operator= (const Property &orig){
+    if (&orig == this)
+        return (*this);
+    this->value = orig.value;
+    this->mortgage = orig.mortgage;
+    this->propery_tax = orig.propery_tax;
+    this->dur_mortgage = orig.dur_mortgage;
+    this->rent = orig.rent;
+
+    this->type = orig.type;
+    this->num_tenants = orig.num_tenants;
+    this->location = orig.location;
+
+    this->tenants = orig.tenants;
+
+    return (*this);
+}
+
+/**
+ * \brief runs an event on a property
+ * @param event, int specifying what event
+ * @param loc, int used int gentrification to pick a location
+ */
 void Property::random_event(int event, int loc) {
 
     switch (event)

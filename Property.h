@@ -32,11 +32,10 @@ protected:
     int location;
     string type;
 
-    void set_loc();
-
 public:
     Property();
     Property(const Property &orig);
+    Property &operator= (const Property &right);
     virtual ~Property();
     virtual int get_value() const;
     virtual string get_loc(int loc) const;
@@ -53,13 +52,13 @@ public:
 
     virtual void inc_prop_val();
     virtual void dec_duration();
-    virtual void hurricane();
-    virtual void tornado();
-    virtual void earthquake();
-    virtual void wildfire();
-    virtual void crash();
-    virtual void gent(int loc);
-    virtual void random_event(int event, int loc);
+    void hurricane();
+    void tornado();
+    void earthquake();
+    void wildfire();
+    void crash();
+    void gent(int loc);
+    void random_event(int event, int loc);
 
     static int user_input_price();
 

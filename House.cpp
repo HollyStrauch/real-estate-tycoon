@@ -31,7 +31,20 @@ House::House(){
 
 }
 
-House & House::operator= (House &right){
+/**
+ * \brief Destructor
+ */
+House::~House(){
+    delete this->tenants;
+    this->tenants = nullptr;
+}
+
+/**
+ * Assignment operator override
+ * @param right
+ * @return
+ */
+House & House::operator= (const House &right){
 
     if (&right == this)
         return (*this);

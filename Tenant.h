@@ -27,6 +27,7 @@ private:
 public:
     Tenant(bool type);
     Tenant();
+    Tenant(const Tenant &orig);
     Tenant &operator= (Tenant &right);
     int get_agree() const;
     int get_budget() const;

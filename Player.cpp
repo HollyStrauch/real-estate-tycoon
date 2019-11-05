@@ -19,25 +19,30 @@
 
 using namespace std;
 
-Player::Player(string name){
-    this->name = name;
+/**
+ * Constructor
+ */
+Player::Player(){
     this->bank_account = 500000;
     this->num_prop = 0;
     this->head = nullptr;
     this->tail = nullptr;
 }
 
+/**
+ * Destructor
+ */
 Player::~Player(){
 
     Node *temp = this->head;
     for (int i = 0; i < this->num_prop; i++){
-
         delete head->p;
-        head->p = NULL;
+        head->p = nullptr;
 
         this->head = head->next;
-
+        temp->next = nullptr;
         delete temp;
+
         temp = this->head;
     }
 
@@ -45,6 +50,65 @@ Player::~Player(){
     tail = nullptr;
 }
 
+/**
+ * \brief Copy Constructor
+ * @param orig
+ */
+Player::Player(const Player &orig){
+    this->bank_account  = orig.bank_account;
+    this->num_prop = orig.num_prop;
+    this->head = nullptr;
+    this->tail = nullptr;
+
+    if (num_prop <= 0){
+        return;
+    }
+    Node *temp = orig.head;
+    this->head = new Node;
+    this->tail = this->head;
+    this->head->p = temp->p;
+
+    for(int i = 0; i < this->num_prop - 1; i++){
+        Node *newN = new Node;
+        newN->p = temp->p;
+        this->tail->next = newN;
+        this->tail = newN;
+        temp = temp->next;
+    }
+}
+
+/**
+ * Assignment operator overload
+ * @param orig
+ * @return
+ */
+Player &Player::operator=(const Player &orig) {
+    if (&orig == this)
+        return (*this);
+    this->bank_account  = orig.bank_account;
+    this->num_prop = orig.num_prop;
+    this->head = nullptr;
+    this->tail = nullptr;
+    if (num_prop <= 0){
+        return (*this);
+    }
+    Node *temp = orig.head;
+    this->head = new Node;
+    this->tail = this->head;
+    this->head->p = temp->p;
+    for(int i = 0; i < this->num_prop - 1; i++){
+        Node *newN = new Node;
+        newN->p = temp->p;
+        this->tail->next = newN;
+        this->tail = newN;
+        temp = temp->next;
+    }
+    return (*this);
+}
+
+/**
+ * \brief Select a property and change the current rent
+ */
 void Player::adjust_rent(){
 
     cout << "+-$ ADJUST RENT $-+ \n Listing all owned properties. " << endl;

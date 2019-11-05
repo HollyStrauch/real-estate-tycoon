@@ -40,11 +40,23 @@ Business::Business(){
 }
 
 /**
+ * \brief Destructor
+ */
+Business::~Business() {
+    delete[] this->rentSpace;
+    delete[] this->tenants;
+    delete[] this->sizes;
+    this->rentSpace = nullptr;
+    this->tenants = nullptr;
+    this->sizes = nullptr;
+}
+
+/**
  * \brief Assignment Operator Overload
  * @param right Existing business to assign values from
  * @return new Business
  */
-Business & Business::operator= (Business &right){
+Business & Business::operator= (const Business &right){
     if (&right == this)
         return (*this);
 
@@ -177,5 +189,5 @@ string Business::get_room_size(int index){
  * @return 0
  */
 int Business::get_rent() const {
-    return 0;
+    return this->rentSpace[0];
 }

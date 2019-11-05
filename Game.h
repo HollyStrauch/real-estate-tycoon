@@ -27,6 +27,9 @@ class Game {
     Business** avail_b;
 public:
     Game();
+    Game(const Game &orig);
+    Game &operator=(const Game &orig);
+    ~Game();
     void start_game();
     void intro();
     void print_avail_p();
